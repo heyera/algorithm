@@ -1,23 +1,34 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.Stack;
+import java.util.StringTokenizer;
 
 public class bj11651 {
     public static void main(String[] args) throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int k=Integer.parseInt(br.readLine());
-        Stack<Integer> st= new Stack<>();
-        int sum=0;
-        for(int i=0;i<k;i++){
-            int n=Integer.parseInt(br.readLine());
-            if(n!=0){
-                sum+=st.push(n);
-            }
-            else{
-                sum-=(st.pop());
-            }
-        }
-        System.out.println(sum);
-    }
+		int n = Integer.parseInt(br.readLine());
+		int[][] arr = new int[n][2];
+		StringTokenizer st;
+		for(int i = 0; i < n; i++) {
+			st = new StringTokenizer(br.readLine());
+			arr[i][1] = Integer.parseInt(st.nextToken());
+			arr[i][0] = Integer.parseInt(st.nextToken());
+		}
+	
+		Arrays.sort(arr, (e1, e2) -> {
+			if(e1[0] == e2[0]) {
+				return e1[1] - e2[1];
+			} else {
+				return e1[0] - e2[0];
+			}
+		});
+	
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0 ; i< n ; i++) {
+			sb.append(arr[i][1] + " " + arr[i][0]).append('\n');
+		}
+		System.out.println(sb);
+	}
 }
