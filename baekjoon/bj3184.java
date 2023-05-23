@@ -52,7 +52,7 @@ public class bj3184 {
         boolean visited[][] = new boolean[maxRow][maxCol];
 
         Queue<int[]> que = new LinkedList<>();
-        int area=0;
+        // int area=0;
         for (int i = 0; i < maxRow; i++) {
             for (int j = 0; j < maxCol; j++) {
                 int sheep = 0;
@@ -60,7 +60,7 @@ public class bj3184 {
                 if (!visited[i][j] && map[i][j] < 3) {
                     que.add(new int[] { i, j });
                     visited[i][j] = true;
-                    area+=1;
+                    // area+=1;
 
                     while (!que.isEmpty()) {
 
@@ -75,20 +75,21 @@ public class bj3184 {
                         for (int k = 0; k < 4; k++) {
                             int newRow = row + moveRow[k];
                             int newCol = col + moveCol[k];
-                            if (checking(newRow, newCol, maxRow, maxCol)&&!visited[newRow][newCol] && map[newRow][newCol] < 3) {
-                                que.add(new int[]{newRow,newCol});
-                                visited[newRow][newCol]=true;
+                            if (checking(newRow, newCol, maxRow, maxCol) && !visited[newRow][newCol]
+                                    && map[newRow][newCol] < 3) {
+                                que.add(new int[] { newRow, newCol });
+                                visited[newRow][newCol] = true;
                             }
                         }
                     }
-                    //System.out.println(area+" - area");
+                    // System.out.println(area+" - area");
 
-                    if(sheep>wolf){
-                        totalSheep+=sheep;
+                    if (sheep > wolf) {
+                        totalSheep += sheep;
                         continue;
                     }
-                    if(sheep<=wolf){
-                        totalWolf+=wolf;
+                    if (sheep <= wolf) {
+                        totalWolf += wolf;
                         continue;
                     }
                 }
