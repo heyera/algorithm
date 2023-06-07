@@ -23,7 +23,8 @@ public class pm92341 {
             // 시간저장
             String TimeStr = totalSt.nextToken();
             StringTokenizer timeSt = new StringTokenizer(TimeStr, ":");
-            int time = (Integer.parseInt(timeSt.nextToken()) * 60) + Integer.parseInt(timeSt.nextToken());
+            int time = (Integer.parseInt(timeSt.nextToken()) * 60)
+                    + Integer.parseInt(timeSt.nextToken());
 
             // 차번호
             String carNumber = totalSt.nextToken();
@@ -33,6 +34,7 @@ public class pm92341 {
 
             if (state.equals("IN")) {
                 park.put(carNumber, time);
+                //parkPay.put(carNumber, 0);
                 continue;
             }
 
@@ -44,18 +46,21 @@ public class pm92341 {
                 parkPay.put(carNumber, inTime);
         }
 
+
         // 출차안한 차들 요금 부과
         if (park.size() > 0) {
             for (String i : park.keySet()) {
-                int inTime = maxTime - park.remove(i);
+                //int inTime = maxTime - park.remove(i);    keyset을 쓰고 내부에서 지우면 런타임 에러가 나옴
+                int inTime = maxTime - park.get(i);
                 if (parkPay.containsKey(i))
                     parkPay.put(i, parkPay.get(i) + inTime);
                 else
                     parkPay.put(i, inTime);
             }
         }
+        System.out.println(park);
 
-        System.out.println(parkPay);
+        //System.out.println(parkPay);
         String[] carNumbers = new String[parkPay.size()];
         int a = 0;
 
@@ -65,6 +70,9 @@ public class pm92341 {
         }
 
         Arrays.sort(carNumbers);
+        for (int i = 0; i < carNumbers.length; i++) {
+            System.out.println(carNumbers[i]);
+        }
 
         int[] answer = new int[parkPay.size()];
 
@@ -89,9 +97,9 @@ public class pm92341 {
         }
 
         // System.out.println(parkPay);
-        System.out.println("\ndkanswer");
-        for (int i = 0; i < answer.length; i++) {
-            System.out.println(answer[i]);
-        }
+        //System.out.println("\ndkanswer");
+        // for (int i = 0; i < answer.length; i++) {
+        //     System.out.println(answer[i]);
+        // }
     }
 }
