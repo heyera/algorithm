@@ -39,7 +39,7 @@ fun bt(depth: Int, path: MutableList<Int>) {
 
         used[i] = true
         path.add(aNum[i])
-        backtrack(depth + 1, path)
+        bt(depth + 1, path)
         path.removeLast()
         used[i] = false
     }
